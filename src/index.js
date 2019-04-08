@@ -115,6 +115,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
       const query = {
         'page[number]': page,
         'page[size]': perPage,
+        'stats[total': 'count'
       };
 
       // Add all filter params to query.
@@ -125,10 +126,10 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
       // Add the reference id to the filter params.
       query[`filter[${params.target}]`] = params.id;
 
-      // Add total parameter
-      if (params.total){
-        query[`${params.total.queryParamter}[${params.total.key}]`] = params.total.value
-      }
+      // // Add total parameter
+      // if (params.total){
+      //   query[`${params.total.queryParamter}[${params.total.key}]`] = params.total.value
+      // }
 
       url = `${apiUrl}/${resource}?${stringify(query)}`;
       break;
