@@ -176,7 +176,7 @@ exports.default = function (apiUrl) {
               data: response.data.data.map(function (value) {
                 return Object.assign({ id: value.id }, value.attributes);
               }),
-              total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value]
+              total: response.data.meta[settings.total] || response.data.meta.stats.total.count
             };
           }
 
@@ -186,7 +186,7 @@ exports.default = function (apiUrl) {
               data: response.data.data.map(function (value) {
                 return Object.assign({ id: value.id }, value.attributes);
               }),
-              total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value]
+              total: response.data.meta[settings.total] || response.data.meta.stats.total.count
             };
           }
 

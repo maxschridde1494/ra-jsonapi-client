@@ -149,7 +149,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
               { id: value.id },
               value.attributes,
             )),
-            total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value],
+            total: response.data.meta[settings.total] || response.data.meta.stats.total.count,
           };
         }
 
@@ -159,7 +159,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
               { id: value.id },
               value.attributes,
             )),
-            total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value],
+            total: response.data.meta[settings.total] || response.data.meta.stats.total.count,
           };
         }
 
