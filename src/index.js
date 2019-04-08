@@ -58,6 +58,11 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
         query.sort = `${prefix}${params.sort.field}`;
       }
 
+      // Add total parameter
+      if (params.total){
+        query[`${params.total.queryParamter}[${params.total.key}]`] = params.total.value
+      }
+
       url = `${apiUrl}/${resource}?${stringify(query)}`;
       break;
     }
@@ -120,6 +125,11 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
       // Add the reference id to the filter params.
       query[`filter[${params.target}]`] = params.id;
 
+      // Add total parameter
+      if (params.total){
+        query[`${params.total.queryParamter}[${params.total.key}]`] = params.total.value
+      }
+
       url = `${apiUrl}/${resource}?${stringify(query)}`;
       break;
     }
@@ -137,7 +147,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
               { id: value.id },
               value.attributes,
             )),
-            total: response.data.meta[settings.total],
+            total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value],
           };
         }
 
@@ -147,7 +157,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
               { id: value.id },
               value.attributes,
             )),
-            total: response.data.meta[settings.total],
+            total: response.data.meta[settings.total] || response.data.meta[params.total.queryParamter][params.total.key][params.total.value],
           };
         }
 
