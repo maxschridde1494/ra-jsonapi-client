@@ -66,7 +66,8 @@ exports.default = function (apiUrl) {
 
           var query = {
             'page[number]': page,
-            'page[size]': perPage
+            'page[size]': perPage,
+            'stats[total': 'count'
           };
 
           // Add all filter params to query.
@@ -80,10 +81,10 @@ exports.default = function (apiUrl) {
             query.sort = '' + prefix + params.sort.field;
           }
 
-          // Add total parameter
-          if (params.total) {
-            query[params.total.queryParamter + '[' + params.total.key + ']'] = params.total.value;
-          }
+          // // Add total parameter
+          // if (params.total){
+          //   query[`${params.total.queryParamter}[${params.total.key}]`] = params.total.value
+          // }
 
           url = apiUrl + '/' + resource + '?' + (0, _qs.stringify)(query);
           break;
