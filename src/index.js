@@ -105,8 +105,9 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
       // const query = {
       //   filter: JSON.stringify({ id: params.ids }),
       // };
+      const filterKey = typeof myVar === 'string' ? params.ids : params.ids.join(',')
       const query = {
-        "filter[id]": params.ids.join(',')
+        "filter[id]": filterKey
       }
       url = `${apiUrl}/${resource}?${stringify(query)}`;
       break;

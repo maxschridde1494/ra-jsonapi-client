@@ -129,8 +129,9 @@ exports.default = function (apiUrl) {
           // const query = {
           //   filter: JSON.stringify({ id: params.ids }),
           // };
+          var filterKey = typeof myVar === 'string' ? params.ids : params.ids.join(',');
           var _query = {
-            "filter[id]": params.ids.join(',')
+            "filter[id]": filterKey
           };
           url = apiUrl + '/' + resource + '?' + (0, _qs.stringify)(_query);
           break;
