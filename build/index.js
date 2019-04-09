@@ -126,8 +126,11 @@ exports.default = function (apiUrl) {
 
       case _actions.GET_MANY:
         {
+          // const query = {
+          //   filter: JSON.stringify({ id: params.ids }),
+          // };
           var _query = {
-            filter: JSON.stringify({ id: params.ids })
+            "filter[id]": params.ids.join(',')
           };
           url = apiUrl + '/' + resource + '?' + (0, _qs.stringify)(_query);
           break;
